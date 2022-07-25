@@ -40,6 +40,10 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+def veggies_index(request):
+    veggies = Veg.objects.all()
+    return render(request, 'veggies/index.html', { 'veggies': veggies })
+
 
 class VegCreate(CreateView):
     model = Veg
