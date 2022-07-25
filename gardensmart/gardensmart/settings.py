@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'gardensmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gardensmart',    
+        'NAME': 'gardensmart',
     }
 }
 
