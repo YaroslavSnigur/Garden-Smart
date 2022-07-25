@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Smart Garden</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo"
+            ><img src="static/images/logo.png"
+          /></a>
+          <a href="{% url 'about' %}">About</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Log Out</a>" {% else %}
+          <a href="{% url 'login' %}">Log In</a>" {% endif %}
+        </div>
+      </nav>
+    </header>
+    <main class="container">{% block content %} {% endblock %}</main>
+    <footer class="page-footer">
+      <div class="right">
+        All Rights Reserved, &copy; 2022 Garden Smart &nbsp;
+      </div>
+    </footer>
+  </body>
+</html>
