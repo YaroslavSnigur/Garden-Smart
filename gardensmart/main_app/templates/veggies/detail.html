@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>My Garden</h1>
-<div class="cards">
-  {% for veg in veggies %}
+<h1>Veg Details</h1>
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ veg.name }}</span>
+      <p>Cost: {{ veg.cost }}</p>
+      <p>Description: {{ veg.description }}</p>
       <p>Date: {{ veg.date }}</p>
       <p>Planted: {{ veg.planted }}</p>
       <p>Stage: {{ veg.stage }}</p>
     </div>
   </div>
-</div>
+</a>
 {% endfor %} {% endblock %}
