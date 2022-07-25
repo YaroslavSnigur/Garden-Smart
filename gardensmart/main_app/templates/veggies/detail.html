@@ -1,15 +1,42 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Veg Details</h1>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ veg.name }}</span>
-      <p>Cost: {{ veg.cost }}</p>
-      <p>Description: {{ veg.description }}</p>
-      <p>Date: {{ veg.date }}</p>
-      <p>Planted: {{ veg.planted }}</p>
-      <p>Stage: {{ veg.stage }}</p>
+<h1>Vegetable Profile</h1>
+<div class="veg-detail-content">
+  <div class="veg-profile">
+    <div class="veg-image-div">
+      <!--insert image tag here-->
+      <img
+        class="veg-image"
+        src="https://i5.walmartimages.ca/images/Enlarge/008/475/6000190008475.jpg"
+      />
+    </div>
+    <div class="veg-info-and-buttons">
+      <div class="veg-info">
+        <div class="veg-info-left">
+          <h3>Name: {{ veg.name }}</h3>
+          <h3>Description:</h3>
+          <h3>{{ veg.description }}</h3>
+          <h3>Cost: ${{veg.cost}} per plant</h3>
+        </div>
+        <div class="veg-info-right">
+          <h3>Date Seeded:</h3>
+          <h3>{{veg.date}}</h3>
+          <h3>Plants: {{veg.planted}}</h3>
+
+          <h3>Produce Stage: {{veg.stage}}</h3>
+        </div>
+      </div>
+      <div class="veg-edit-del-btns">
+        <!--insert two buttons here-->
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
     </div>
   </div>
-</a>
-{% endfor %} {% endblock %}
+  <div class="inputs-choices">
+    <!--Seperate into 3 columns or divs for inputs-->
+    <h1>INPUTS AND STUFF HERE LATER</h1>
+  </div>
+</div>
+
+{% endblock %}
