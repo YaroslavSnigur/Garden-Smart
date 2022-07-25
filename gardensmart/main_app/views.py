@@ -76,3 +76,8 @@ def inputs_index(request):
   return render(request, 'main_app/input_list.html', { 'inputs': inputs })
 
 
+
+
+def veg_detail(request, veg_id):
+    veg = Veg.objects.get(id=veg_id)
+    return render(request, 'veggies/detail.html', { 'veg': veg })

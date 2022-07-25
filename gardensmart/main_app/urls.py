@@ -11,4 +11,5 @@ urlpatterns= [
     path('inputs/create/', views.InputCreate.as_view(), name='inputs_create'),
     path('inputs/<int:pk>/update/', views.InputUpdate.as_view(), name='inputs_update'),
     path('inputs/<int:pk>/delete/', views.InputDelete.as_view(), name='inputs_delete'),
+    path('veggies/<int:veg_id>', views.veg_detail, name='detail'),
 ]
