@@ -7,9 +7,12 @@
   background-color: rgba(171, 115, 6, 1);
 }
 
-.nav-wrapper {
-  margin: 30px;
+.nav-item {
+  margin-left: 80px;
+  text-decoration: none;
+  font-size: 25px;
 }
+
 body {
   display: flex;
   min-height: 100vh;
