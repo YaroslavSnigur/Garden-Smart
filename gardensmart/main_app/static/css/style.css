@@ -1,3 +1,11 @@
+h1 {
+  text-align: center;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 30px;
+}
 .navbar-fixed {
   height: 130px;
   display: flex;
@@ -6,11 +14,36 @@
   align-items: center;
   background-color: rgba(171, 115, 6, 1);
 }
-
+.brand-logo {
+  margin-left: 40px;
+}
 .nav-item {
   margin-left: 80px;
   text-decoration: none;
   font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+}
+
+.log-out,
+.log-in {
+  margin-left: 150px;
+  margin-bottom: 100px;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+}
+
+.sign-up {
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
 }
 
 body {
@@ -27,4 +60,83 @@ footer.page-footer {
   padding-top: 0;
   text-align: right;
   background-color: rgba(171, 115, 6, 1);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.25));
+}
+.card-content {
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*===========STYLING FOR VEG DETAIL.HTML ============*/
+
+.veg-detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+  height: 100vh;
+}
+
+.veg-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+}
+
+.veg-image-div {
+  width: 200px;
+}
+
+.veg-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.veg-info {
+  width: 410px;
+  height: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.veg-edit-del-btns {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.input-choices {
+  width: 100%;
 }
