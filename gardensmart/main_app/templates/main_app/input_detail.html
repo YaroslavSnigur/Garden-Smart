@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Input Details</h1>
+
+<div >
+  <div>
+    <div>
+        <div>
+            <span >{{ input.name }}</span>
+            <p>Category: {{ input.category }}</p>
+            <p>Description: {{ input.description }}</p>
+            <p>Cost: {{ input.cost }}</p>
+        </div>
+      <div>
+        <a href="{% url 'inputs_update' input.id %}">Edit</a>
+        <a href="{% url 'inputs_delete' input.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
