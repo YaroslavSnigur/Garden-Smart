@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Veg, Input
+from .models import Veg, Input, STAGES
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -44,9 +44,47 @@ def veggies_index(request):
     veggies = Veg.objects.all()
     return render(request, 'veggies/index.html', { 'veggies': veggies })
 
+#makes form for adding veggie
+def veggies_create(request):
+    seeds = Input.objects.all().filter(category='seeds')
+   
+    return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES})
+
+
+def veggies_add(request):
+
+    if request.method == 'POST':
+        
+        print(f'new vegetable planted is {request.POST["planted"]}')
+        
+        userid = request.user
+
+        veg = Veg.objects.create(
+            name = request.POST["name"],
+            description= request.POST["description"],
+            cost = request.POST["cost"],
+            date = request.POST["date"],
+            planted = request.POST["planted"],
+            user = userid,
+            stage = request.POST["stage"],
+        )
+        
+        
+
+    #veggies = Veg.objects.all()
+    return redirect('veg_create')
+    #return redirect('index')
+
+
+
+
+
+
 #this adds a new kind of vegetable to the store, does not include date, planted or stage
 class VegCreate(CreateView):
-    model = Veg
+    
+    model = Veg    
+
     fields = [ 'name', 'description', 'cost' ]
     success_url= '/veggies/'
 
@@ -79,8 +117,6 @@ class InputDelete(DeleteView):
 def inputs_index(request):
   inputs = Input.objects.all()
   return render(request, 'main_app/input_list.html', { 'inputs': inputs })
-
-
 
 
 def veg_detail(request, veg_id):
