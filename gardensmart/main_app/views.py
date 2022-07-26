@@ -65,7 +65,9 @@ class InputDetail(DetailView):
 
 class InputCreate(CreateView):
   model = Input
-  fields = '__all__'
+  fields = ['name', 'category', 'description', 'cost']
+  success_url = '/inputs/'
+
 
 class InputUpdate(UpdateView):
   model = Input
