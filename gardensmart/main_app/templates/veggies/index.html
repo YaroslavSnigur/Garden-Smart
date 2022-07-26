@@ -3,6 +3,7 @@
 <h1>My Garden</h1>
 <div class="cards">
   {% for veg in veggies %}
+  <a href="{% url 'detail' veg.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ veg.name }}</span>
