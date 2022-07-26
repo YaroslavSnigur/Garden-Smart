@@ -11,6 +11,14 @@ INPUTS = (
     ('Seeds', 'Seeds')
 )
 # Create your models here.
+
+STAGES = (
+    ("S", "Seeded"),
+    ("G","Growth"),
+    ("H", "Harvest-Ready"),
+)
+
+
 class Input(models.Model):
     name = models.CharField(max_length = 50)
     category = models.CharField(
@@ -37,7 +45,7 @@ class Veg(models.Model):
     cost = models.FloatField("Cost ($/plant)", default = 0.0)
     date = models.DateField("Date", default=datetime.now)
     planted = models.IntegerField(default = 0)
-    stage = models.CharField(max_length = 50)
+    stage = models.CharField( max_length = 1, choices = STAGES, default=STAGES[0][0])
 
     inputs = models.ManyToManyField(Input, blank=True)
 
