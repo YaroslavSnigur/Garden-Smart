@@ -23,7 +23,7 @@ def signup(request):
 
             #create a profile and add user
             profile = Profile.objects.create(
-                name = request.user.username,
+                name = user.username,
                 user = user,
                 expenses = 0.0,
             )
