@@ -11,7 +11,6 @@ INPUTS = (
     ('Seeds', 'Seeds')
 )
 # Create your models here.
-<<<<<<< HEAD
 
 STAGES = (
     ("S", "Seeded"),
@@ -20,8 +19,6 @@ STAGES = (
 )
 
 
-=======
->>>>>>> 8e8aaf9739058280a970cd8dcee9f0591f5e2b60
 class Input(models.Model):
     name = models.CharField(max_length = 50)
     category = models.CharField(
