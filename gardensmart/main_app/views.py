@@ -129,3 +129,8 @@ def inputs_index(request):
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     return render(request, 'veggies/detail.html', { 'veg': veg })
+
+def garden_store(request):
+  inputs = Input.objects.all()
+  veggies = Veg.objects.all()
+  return render(request, 'main_app/garden_store.html', { 'veggies': veggies, 'inputs': inputs })

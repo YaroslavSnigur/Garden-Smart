@@ -5,3 +5,31 @@
 
 
 /veggies = /index
+
+
+
+
+## garde Store
+{% extends 'base.html' %} {% block content %}
+
+<h1>Garden Store</h1>
+
+<div clss="categories">
+  <div class="fertilizers">
+    <h2>Fertilizers</h2>
+    {% for input in input_list %}
+    <span>{{ input.name }}</span>
+    <p>Cost: {{ input.cost }}</p>
+  </div>
+  <div class="pesticides">
+    <h2>Pesticides</h2>
+  </div>
+  <div class="tools">
+    <h2>Tools</h2>
+  </div>
+  <div class="seeds">
+    <h2>Seeds</h2>
+  </div>
+</div>
+</div>
+{% endfor %} {% endblock %}
