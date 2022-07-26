@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Veg, Input, STAGES
+from .models import Veg, Input, Profile, STAGES
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -20,6 +20,13 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            #create a profile and add user
+            profile = Profile.objects.create(
+                name = request.user.username,
+                user = user,
+                expenses = 0.0,
+            )
 
             login(request, user)
             return redirect('about')
