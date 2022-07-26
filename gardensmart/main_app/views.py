@@ -47,7 +47,7 @@ def veggies_index(request):
 #makes form for adding veggie
 def veggies_create(request):
     seeds = Input.objects.all().filter(category='seeds')
-   
+    
     return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES})
 
 
