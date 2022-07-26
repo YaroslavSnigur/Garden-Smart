@@ -1,19 +1,16 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Inputs List</h1>
 
 {% for input in input_list %}
-  <a href="{% url 'inputs_detail' input.id %}">
+<a href="{% url 'inputs_detail' input.id %}">
+  <div>
     <div>
-        <div>
-            <span >{{ input.name }}</span>
-            <p>Category: {{ input.category }}</p>
-            <p>Description: {{ input.description }}</p>
-            <p>Cost: {{ input.cost }}</p>
-        </div>
+      <span>{{ input.name }}</span>
+      <p>Category: {{ input.category }}</p>
+      <p>Description: {{ input.description }}</p>
+      <p>Cost: {{ input.cost }}</p>
     </div>
-  </a>
-{% endfor %}
-
-{% endblock %}
+  </div>
+</a>
+{% endfor %} {% endblock %}

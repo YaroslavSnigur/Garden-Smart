@@ -6,7 +6,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 INPUTS = (
     ('Fertilizers','Fertilizers'),
-    ('Pesticide', 'Pesticide'),
+    ('Pesticides', 'Pesticides'),
     ('Tools', 'Tools'),
     ('Seeds', 'Seeds')
 )
