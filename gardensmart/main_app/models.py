@@ -12,7 +12,7 @@ class Input(models.Model):
     name = models.CharField(max_length = 50)
     category = models.CharField(max_length=50)
     description = models.TextField(max_length=250)
-    cost = models.FloatField(default = 0.0)
+    cost = models.FloatField("Cost ($/use)", default = 0.0)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -27,7 +27,7 @@ class Input(models.Model):
 class Veg(models.Model):
     name = models.CharField(max_length = 50)
     description = models.TextField(max_length = 250)
-    cost = models.FloatField(default = 0.0)
+    cost = models.FloatField("Cost ($/plant)", default = 0.0)
     date = models.DateField("Date", default=datetime.now)
     planted = models.IntegerField(default = 0)
     stage = models.CharField(max_length = 50)
