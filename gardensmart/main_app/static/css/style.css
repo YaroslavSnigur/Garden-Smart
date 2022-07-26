@@ -6,6 +6,7 @@ h1 {
   font-size: 32px;
   line-height: 30px;
 }
+
 .navbar-fixed {
   height: 130px;
   display: flex;
@@ -14,9 +15,11 @@ h1 {
   align-items: center;
   background-color: rgba(171, 115, 6, 1);
 }
+
 .brand-logo {
   margin-left: 40px;
 }
+
 .nav-item {
   margin-left: 80px;
   text-decoration: none;
@@ -66,6 +69,7 @@ footer.page-footer {
   display: flex;
   flex-wrap: wrap;
 }
+
 .card {
   height: 250px;
   width: 250px;
@@ -79,6 +83,7 @@ footer.page-footer {
   border-radius: 10px;
   filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.25));
 }
+
 .card-content {
   font-family: "DIN Alternate";
   font-style: normal;
@@ -86,6 +91,7 @@ footer.page-footer {
   font-size: 20px;
   line-height: 30px;
   text-align: center;
+}
 
 .container {
   display: flex;
