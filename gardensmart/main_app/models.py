@@ -21,7 +21,7 @@ STAGES = (
 )
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, ondelete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     expenses = models.FloatField("Amount Spent ($)", default = 0.0)
 
 
