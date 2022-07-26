@@ -1,19 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Inputs List</h1>
+<h1>Store</h1>
+<div class="store-container">
 
+<div class="input-container">
+  <h2>Fertilizers</h2>
 {% for input in input_list %}
+  {% if input.category == "Fertilizers" %}
+  <div class="data-input-container">
   <a href="{% url 'inputs_detail' input.id %}">
-    <div>
-        <div>
-            <span >{{ input.name }}</span>
-            <p>Category: {{ input.category }}</p>
-            <p>Description: {{ input.description }}</p>
-            <p>Cost: {{ input.cost }}</p>
-        </div>
-    </div>
+           <div> <p>{{ input.name }}</p></div>
+           <div class="cost-data-input-container"><p>Cost: ${{ input.cost }}</p></div>
   </a>
+</div>
+  {% endif %}
 {% endfor %}
+</div>
+<div class="input-container">
+<h2>Pesticide</h2>
+{% for input in input_list %}
+  {% if input.category == "Pesticide" %}
+  <div class="data-input-container">
+  <a href="{% url 'inputs_detail' input.id %}">
+           <div > <p>{{ input.name }}</p></div>
+           <div class="cost-data-input-container"><p>Cost: ${{ input.cost }}</p></div>
+  </a>
+</div>
+  {% endif %}
+{% endfor %}
+</div>
+<div class="input-container">
+  <h2>Tools</h2>
+  {% for input in input_list %}
+    {% if input.category == "Tools" %}
+    <div class="data-input-container">
+    <a href="{% url 'inputs_detail' input.id %}">
+             <div> <p>{{ input.name }}</p></div>
+             <div class="cost-data-input-container"><p>Cost: ${{ input.cost }}</p></div>
+    </a>
+  </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+  <div class="input-container">
+    <h2>Seeds</h2>
+
+    {% for input in input_list %}
+      {% if input.category == "Seeds" %}
+      <div class="data-input-container">
+      <a href="{% url 'inputs_detail' input.id %}">
+               <div> <p>{{ input.name }}</p></div>
+               <div class="cost-data-input-container"><p>Cost: ${{ input.cost }}</p></div>
+      </a>
+    </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+    </div>
+
+<div class="basket-container">
+
+</div>
+
 
 {% endblock %}
