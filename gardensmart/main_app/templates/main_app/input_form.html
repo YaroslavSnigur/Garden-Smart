@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="add-form">
   {% if object %}
+  <div class="">
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+  
   {% else %}
-    <h1>Add Input</h1>
+  <div><h1>Add Input</h1></div>
   {% endif %}
   <form action="{% url 'inputs_update' input.id %}" method="post">
     {% csrf_token %}
@@ -13,4 +16,5 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+</div>
 {% endblock %}
