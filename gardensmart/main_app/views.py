@@ -44,13 +44,18 @@ def veggies_index(request):
     veggies = Veg.objects.all()
     return render(request, 'veggies/index.html', { 'veggies': veggies })
 
+#this adds a new kind of vegetable to the store, does not include date, planted or stage
 class VegCreate(CreateView):
     model = Veg
-    fields = [ 'name', 'description', 'cost', 'date', 'planted', 'stage' ]
+    fields = [ 'name', 'description', 'cost' ]
+    success_url= '/veggies/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+#there will be a seperate create to add instances of a vegetable to a garden
 
 class InputList(ListView):
   model = Input
