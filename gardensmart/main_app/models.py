@@ -4,13 +4,20 @@ from datetime import datetime
 
 #user schema and authorization
 from django.contrib.auth.models import User
-
+INPUTS = (
+    ('Fertilizers','Fertilizers'),
+    ('Pesticide', 'Pesticide'),
+    ('Tools', 'Tools'),
+    ('Seeds', 'Seeds')
+)
 # Create your models here.
-
-
 class Input(models.Model):
     name = models.CharField(max_length = 50)
-    category = models.CharField(max_length=50)
+    category = models.CharField(
+        max_length=11,
+        choices=INPUTS,
+        default=INPUTS[0][0]
+    )
     description = models.TextField(max_length=250)
     cost = models.FloatField("Cost ($/use)", default = 0.0)
 

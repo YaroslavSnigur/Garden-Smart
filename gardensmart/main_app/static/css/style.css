@@ -29,7 +29,7 @@ h1 {
   font-weight: 500;
   position: absolute;
   top: 60px;
-  left: 155px;
+  left: 125px;
   height: 135px;
 }
 
@@ -42,7 +42,41 @@ h1 {
   font-weight: 500;
   position: absolute;
   top: 60px;
-  left: 325px;
+  left: 265px;
+}
+.nav-add {
+  margin-left: 80px;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  position: absolute;
+  top: 60px;
+  left: 455px;
+}
+
+.nav-inputs {
+  margin-left: 80px;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  position: absolute;
+  top: 60px;
+  left: 695px;
+}
+
+.nav-inputs-add {
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  position: absolute;
+  top: 60px;
+  left: 985px;
 }
 
 .log-out,
