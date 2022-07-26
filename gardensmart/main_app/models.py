@@ -2,8 +2,10 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 
+
 #user schema and authorization
 from django.contrib.auth.models import User
+
 INPUTS = (
     ('Fertilizers','Fertilizers'),
     ('Pesticide', 'Pesticide'),
@@ -17,6 +19,10 @@ STAGES = (
     ("G","Growth"),
     ("H", "Harvest-Ready"),
 )
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, ondelete=models.CASCADE)
+    expenses = models.FloatField("Amount Spent ($)", default = 0.0)
 
 
 class Input(models.Model):
