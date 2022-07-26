@@ -15,15 +15,34 @@ h1 {
   background-color: rgba(171, 115, 6, 1);
 }
 .brand-logo {
-  margin-left: 40px;
+  position: absolute;
+  left: 25px;
+  top: 20px;
+  height: 65px;
 }
-.nav-item {
+.nav-about {
   margin-left: 80px;
   text-decoration: none;
   font-size: 25px;
   font-family: "DIN Alternate";
   font-style: normal;
   font-weight: 500;
+  position: absolute;
+  top: 60px;
+  left: 155px;
+  height: 135px;
+}
+
+.nav-index {
+  margin-left: 80px;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "DIN Alternate";
+  font-style: normal;
+  font-weight: 500;
+  position: absolute;
+  top: 60px;
+  left: 325px;
 }
 
 .log-out,
@@ -35,6 +54,9 @@ h1 {
   font-family: "DIN Alternate";
   font-style: normal;
   font-weight: 500;
+  position: absolute;
+  top: 60px;
+  right: 65px;
 }
 
 .sign-up {
@@ -44,6 +66,9 @@ h1 {
   font-family: "DIN Alternate";
   font-style: normal;
   font-weight: 500;
+  position: absolute;
+  top: 60px;
+  right: 165px;
 }
 
 body {
@@ -86,6 +111,7 @@ footer.page-footer {
   font-size: 20px;
   line-height: 30px;
   text-align: center;
+}
 
 .container {
   display: flex;
