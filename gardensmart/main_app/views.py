@@ -161,7 +161,9 @@ def inputs_index(request):
 
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
-    return render(request, 'veggies/detail.html', { 'veg': veg })
+    p = Profile.objects.get(user_id=request.user.id)
+    inputs_user = p.inputs.all()
+    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user })
 
 def garden_store(request):
   p = Profile.objects.get(user_id=request.user.id)
