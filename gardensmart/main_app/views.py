@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Veg, Input, Profile, STAGES
+from .models import Veg, Input, Profile, STAGES, User
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -139,6 +139,7 @@ class InputDetail(DetailView):
 class InputCreate(CreateView):
   model = Input
   fields = '__all__'
+  success_url = '/inputs/'
 
 class InputUpdate(UpdateView):
   model = Input
@@ -159,6 +160,20 @@ def veg_detail(request, veg_id):
     return render(request, 'veggies/detail.html', { 'veg': veg })
 
 def garden_store(request):
+  p = Profile.objects.get(user_id=request.user.id)
+  inputs_user = p.inputs.all()
   inputs = Input.objects.all()
   veggies = Veg.objects.all()
-  return render(request, 'main_app/garden_store.html', { 'veggies': veggies, 'inputs': inputs })
+  return render(request, 'main_app/garden_store.html', { 'veggies': veggies, 'inputs': inputs, 'inputs_user': inputs_user })
+
+
+def assoc_input(request, input_id):
+  userid = request.user.id
+  Profile.objects.get(user_id=userid).inputs.add(input_id)
+  return redirect('garden_store')
+
+
+def unassoc_input(request, user_id, input_id):
+  userid = request.user
+  Input.objects.get(id=input_id).user.remove(userid)
+  return redirect('garden_store', userid)

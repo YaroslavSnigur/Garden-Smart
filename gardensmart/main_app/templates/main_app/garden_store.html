@@ -10,7 +10,10 @@
         <div class="input-card">    
             <p>{{ input.name }}
             <p>${{ input.cost }}</p>
-            <a href="" class="add-btn">add</a>
+            <form action="{% url 'assoc_input' input.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="add-btn">add</button>
+            </form>
         </div>
     {% endif %}
     {% endfor %} 
@@ -24,8 +27,6 @@
         <p>${{ input.cost }}</p>
         <a href="" class="add-btn">add</a>
     </div>
-    
-    
     {% endif %}
     {% endfor %} 
   </div>
@@ -57,6 +58,16 @@
 </div>
 
 <div class="basket">
-    <h2> Basket </h2>
+    <h2> Your Basket </h2>
+    {% for input in inputs_user %}
+    <div class="input-card">  
+        <p>{{ input.name }}
+        <p>${{ input.cost }}</p>
+    <form action="{% url 'unassoc_input' input.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="add-btn">Remove</button>
+    </form>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
