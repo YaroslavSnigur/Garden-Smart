@@ -22,32 +22,46 @@
           <h3>Date Seeded:</h3>
           <h3>{{veg.date}}</h3>
           <h3>Plants: {{veg.planted}}</h3>
-
           <h3>Produce Stage: {{veg.stage}}</h3>
         </div>
       </div>
       <div class="veg-edit-del-btns">
         <!--insert two buttons here-->
-        <button>Edit</button>
-        <button>Delete</button>
+        <form action="{% url 'veg_update' veg.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="update-btn">Update Produce Stage</button>
+        </form>
+        <form action="{% url 'veg_delete' veg.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="delete-btn">Delete</button>
+        </form>
       </div>
     </div>
   </div>
   <div class="inputs-choices">
     <!--Seperate into 3 columns or divs for inputs-->
     <div class="basket">
-      <h2> Stuff you can apply to your veggie </h2>
+
+      <h2>Fertilizers, Pesticides, and Tools</h2>
+      <h4>Total Garden Spending ($): {{ expenses }}</h4>
       {% for input in inputs_user %}
-      <div class="input-card">  
-          <p>{{ input.name }}
-          <p>${{ input.cost }}</p>
-      <form action="" method="post">
-          {% csrf_token %}
+      <form action="{% url 'input_apply' veg.id input.id %}" method="post">
+        {% csrf_token %}
+        <div class="input-card">
+          <h3>{{ input.name }}</h3>
+          <h4>Cost: ${{ input.cost }}/use</h4>
+
+          {% if input.category == "Tools"%}
+          <button type="submit" class="add-btn">Rent</button>
+          {% else %}
           <button type="submit" class="add-btn">Apply</button>
+
+          {% endif %}
+        </div>
       </form>
-      </div>
+
       {% endfor %}
-  </div>
+    </div>
   </div>
 </div>
 

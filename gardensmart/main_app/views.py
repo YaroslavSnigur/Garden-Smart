@@ -125,15 +125,24 @@ def veggies_add(request):
 
 #this adds a new kind of vegetable to the store, does not include date, planted or stage
 class VegCreate(CreateView):
-    
-    model = Veg    
+  model = Veg    
 
-    fields = [ 'name', 'description', 'cost' ]
-    success_url= '/veggies/'
+  fields = [ 'name', 'description', 'cost' ]
+  success_url= '/veggies/'
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+class VegDelete(DeleteView):
+  model = Veg
+  success_url = '/veggies/'
+
+
+class VegUpdate(UpdateView):
+  model = Veg
+  fields = ['stage']
+  success_url = '/veggies/'
 
 
 #there will be a seperate create to add instances of a vegetable to a garden
@@ -167,7 +176,18 @@ def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     p = Profile.objects.get(user_id=request.user.id)
     inputs_user = p.inputs.all()
-    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user })
+
+
+    #update stages to display properly
+
+    tempstage = veg.stage
+    for idx in STAGES:
+      if tempstage == idx[0]:
+        veg.stage = idx[1]
+
+    expenses = p.expenses
+
+    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user, 'expenses': expenses })
 
 def garden_store(request):
   p = Profile.objects.get(user_id=request.user.id)
@@ -179,11 +199,28 @@ def garden_store(request):
 
 def assoc_input(request, input_id):
   userid = request.user.id
-  Profile.objects.get(user_id=userid).inputs.add(input_id)
+  p = Profile.objects.get(user_id=userid)
+  idx = p.id
+  Profile.objects.get(id=idx).inputs.add(input_id)
   return redirect('garden_store')
 
 
 def unassoc_input(request, input_id):
   userid = request.user.id
-  Profile.objects.get(user_id=userid).inputs.remove(input_id)
+  p = Profile.objects.get(user_id=userid)
+  idx = p.id
+  Profile.objects.get(id=idx).inputs.remove(input_id)
   return redirect('garden_store')
+
+
+def input_apply(request, veg_id, input_id):
+  p = Profile.objects.get(user_id=request.user.id)
+  totalexpenses = p.expenses
+
+  cost = Input.objects.get(id=input_id).cost
+  
+  totalexpenses = totalexpenses+cost
+  p.expenses = totalexpenses
+  p.save()  
+
+  return redirect('detail', veg_id=veg_id)

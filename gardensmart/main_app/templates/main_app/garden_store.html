@@ -8,7 +8,7 @@
     {% for input in inputs %}
         {% if input.category == "Fertilizers" %}
         <div class="input-card">    
-            <p>{{ input.name }}
+            <p>{{ input.name }}</p>
             <p>${{ input.cost }}</p>
             <form action="{% url 'assoc_input' input.id %}" method="post">
                 {% csrf_token %}
@@ -23,11 +23,12 @@
     {% for input in inputs %}
         {% if input.category == "Pesticides" %}
     <div class="input-card">    
-        <p>{{ input.name }}
+        <p>{{ input.name }}</p>
         <p>${{ input.cost }}</p>
         <form action="{% url 'assoc_input' input.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="add-btn">add</button>
+        </form>
     </div>
     {% endif %}
     {% endfor %} 
@@ -37,11 +38,12 @@
     {% for input in inputs %}
         {% if input.category == "Tools" %}
         <div class="input-card">    
-            <p>{{ input.name }}
+            <p>{{ input.name }}</p>
             <p>${{ input.cost }}</p>
             <form action="{% url 'assoc_input' input.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="add-btn">add</button>
+            </form>
         </div>
     {% endif %}
     {% endfor %} 
@@ -51,11 +53,12 @@
     {% for input in inputs %}
         {% if input.category == "Seeds" %}
         <div class="input-card">    
-            <p>{{ input.name }}
+            <p>{{ input.name }}</p>
             <p>${{ input.cost }}</p>
             <form action="{% url 'assoc_input' input.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="add-btn">add</button>
+            </form>
         </div>
     {% endif %}
     {% endfor %} 
@@ -69,7 +72,7 @@
         {% for input in inputs_user %}
 
         <div class="input-card">  
-            <p>{{ input.name }}
+            <p>{{ input.name }}</p>
             <p>${{ input.cost }}</p>
         <form action="{% url 'unassoc_input' input.id %}" method="post">
             {% csrf_token %}
