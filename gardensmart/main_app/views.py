@@ -167,7 +167,18 @@ def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     p = Profile.objects.get(user_id=request.user.id)
     inputs_user = p.inputs.all()
-    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user })
+
+
+    #update stages to display properly
+
+    tempstage = veg.stage
+    for idx in STAGES:
+      if tempstage == idx[0]:
+        veg.stage = idx[1]
+
+    expenses = p.expenses
+
+    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user, 'expenses': expenses })
 
 def garden_store(request):
   p = Profile.objects.get(user_id=request.user.id)
