@@ -2,27 +2,24 @@
 
 <h1>Plant Vegetable Seeds</h1>
 
+{{ seedslist |json_script:"seedArray" }}
+
 <form action="{% url 'veg_add' %}" method="POST">
   {% csrf_token %}
   <div class="planting-form-div">
     <div class="plant-form">
       <h4>Seeds (Dropdown):</h4>
-      <select id="name" name="name">
+      <select id="veg-seed" name="name">
         {% for seed in seeds %}
         <option value="{{seed.name}}">{{ seed.name }}</option>
         {% endfor %}
       </select>
 
       <!-- hidden inputs to set name, description, etc-->
-
-      <input
-        type="hidden"
-        id="veg_description"
-        name="description"
-        value="red fruit"
-      />
-      <input type="hidden" id="veg_cost" name="cost" value="1.0" />
-
+      <h4 id="veg-desc"></h4>
+      <input type="hidden" id="veg-desc-input" name="description" />
+      <h4 id="veg-cost"></h4>
+      <input type="hidden" id="veg-cost-input" name="cost" />
       <!--form fields-->
       <h4>Date:</h4>
       <input type="date" name="date" />
@@ -38,5 +35,41 @@
   </div>
   <input type="submit" value="Submit" class="btn" />
 </form>
+
+<script type="text/javascript">
+  //capture the seedArray passed in
+  const seedsList = JSON.parse(
+    document.getElementById("seedArray").textContent
+  );
+
+  //default variable is at seedsList[0], add cost and things
+  let description = seedsList[0]["description"];
+  let cost = seedsList[0]["cost"];
+  document.getElementById("veg-desc").innerHTML = `Description: ${description}`;
+  document.getElementById("veg-desc-input").value = description;
+  document.getElementById("veg-cost").innerHTML = `Cost ($/plant): ${cost}`;
+  document.getElementById("veg-cost-input").value = cost;
+
+  //add event listener to drop down menu
+  let vegSelectEl = document.getElementById("veg-seed");
+  vegSelectEl.addEventListener("change", function () {
+    seedname = vegSelectEl.value;
+
+    let seed = seedsList.filter((obj) => {
+      return obj.name == seedname;
+    });
+    console.log(`Seed is of type ${typeof seed} and looks like`);
+    console.log(seed);
+
+    description = seed[0]["description"];
+    cost = seed[0]["cost"];
+    document.getElementById(
+      "veg-desc"
+    ).innerHTML = `Description: ${description}`;
+    document.getElementById("veg-desc-input").value = description;
+    document.getElementById("veg-cost").innerHTML = `Cost ($/plant): ${cost}`;
+    document.getElementById("veg-cost-input").value = cost;
+  });
+</script>
 
 {% endblock %}
