@@ -52,10 +52,15 @@ def about(request):
 
 def veggies_index(request):
 
+    #show only vegetables that has this user
+    veggies = Veg.objects.all().filter(user_id=request.user.id)
+    
+    #grab the cost with this user profile
+    profile = Profile.objects.get(user_id = request.user.id)
+    expenses = profile.expenses
+    #print(f'total expenses on this profile is {expenses}')
 
-    #veggies = Veg.objects.all().filter(user_id=request.user_id)
-    veggies = Veg.objects.all()
-    return render(request, 'veggies/index.html', { 'veggies': veggies })
+    return render(request, 'veggies/index.html', { 'veggies': veggies, "expenses": expenses })
 
 #makes form for adding veggie
 def veggies_create(request):
@@ -105,9 +110,12 @@ def veggies_add(request):
 
       expenses = cost*planted
       # print(f'profile expense is {totalexpenses} and additional cost is {expenses}')
-      totalexpenses = totalexpenses+expenses
+      #update cost and round to 2 decimal places
+      totalexpenses = round(totalexpenses+expenses, 2)
       print(f'Total expenses is now {totalexpenses}')
-      
+
+      profile.expenses = totalexpenses
+      profile.save()
 
 
     
