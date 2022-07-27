@@ -51,19 +51,25 @@ def about(request):
   return render(request, 'about.html')
 
 def veggies_index(request):
-    veggies = Veg.objects.all()
-    return render(request, 'veggies/index.html', { 'veggies': veggies })
+
+    #show only vegetables that has this user
+    veggies = Veg.objects.all().filter(user_id=request.user.id)
+    
+    #grab the cost with this user profile
+    profile = Profile.objects.get(user_id = request.user.id)
+    expenses = profile.expenses
+    #print(f'total expenses on this profile is {expenses}')
+
+    return render(request, 'veggies/index.html', { 'veggies': veggies, "expenses": expenses })
 
 #makes form for adding veggie
 def veggies_create(request):
+    #update later to to be just seeds in basket.
     seeds = Input.objects.all().filter(category='Seeds')
     print (seeds)
 
-
     seedslist = []
-    # seedslist = list(seeds)
-    # print(seedslist)
-    
+
     for seed in seeds:
 
         seedobj = {}
@@ -76,29 +82,45 @@ def veggies_create(request):
     return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES, "seedslist": seedslist})
 
 
+
 def veggies_add(request):
 
     if request.method == 'POST':
         
-        print(f'new vegetable planted is {request.POST["planted"]}')
-        
-        userid = request.user
+      print(f'new vegetable planted is {request.POST["planted"]}')
+      
 
-        veg = Veg.objects.create(
-            name = request.POST["name"],
-            description= request.POST["description"],
-            cost = request.POST["cost"],
-            date = request.POST["date"],
-            planted = request.POST["planted"],
-            user = userid,
-            stage = request.POST["stage"],
-        )
+      profile = Profile.objects.get(user_id=request.user.id)
+      
+      veg = Veg.objects.create(
+          name = request.POST["name"],
+          description= request.POST["description"],
+          cost = request.POST["cost"],
+          date = request.POST["date"],
+          planted = request.POST["planted"],
+          user = profile,
+          stage = request.POST["stage"],
+      )
+
+      #updating the cost
+      totalexpenses = profile.expenses
+      cost = float(request.POST["cost"])
+      planted = int(request.POST["planted"])
+      print(f'TOTAL EXPENSES SO FAR: {totalexpenses}, cost is {cost} and planted number is {planted}')
+
+      expenses = cost*planted
+      # print(f'profile expense is {totalexpenses} and additional cost is {expenses}')
+      #update cost and round to 2 decimal places
+      totalexpenses = round(totalexpenses+expenses, 2)
+      print(f'Total expenses is now {totalexpenses}')
+
+      profile.expenses = totalexpenses
+      profile.save()
+
+
+    
     #return redirect('veg_create')
     return redirect('index')
-
-
-
-
 
 
 #this adds a new kind of vegetable to the store, does not include date, planted or stage
@@ -143,7 +165,9 @@ def inputs_index(request):
 
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
-    return render(request, 'veggies/detail.html', { 'veg': veg })
+    p = Profile.objects.get(user_id=request.user.id)
+    inputs_user = p.inputs.all()
+    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user })
 
 def garden_store(request):
   p = Profile.objects.get(user_id=request.user.id)
@@ -159,7 +183,7 @@ def assoc_input(request, input_id):
   return redirect('garden_store')
 
 
-def unassoc_input(request, user_id, input_id):
-  userid = request.user
-  Input.objects.get(id=input_id).user.remove(userid)
-  return redirect('garden_store', userid)
+def unassoc_input(request, input_id):
+  userid = request.user.id
+  Profile.objects.get(user_id=userid).inputs.remove(input_id)
+  return redirect('garden_store')

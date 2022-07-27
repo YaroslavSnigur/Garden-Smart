@@ -1,3 +1,4 @@
+from audioop import minmax
 from django.db import models
 from django.urls import reverse
 from datetime import datetime
@@ -62,4 +63,3 @@ class Veg(models.Model):
 
     def __str__(self):
         return self.name
-

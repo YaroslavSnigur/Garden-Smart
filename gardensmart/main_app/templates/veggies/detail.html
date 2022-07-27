@@ -35,7 +35,19 @@
   </div>
   <div class="inputs-choices">
     <!--Seperate into 3 columns or divs for inputs-->
-    <h1>INPUTS AND STUFF HERE LATER</h1>
+    <div class="basket">
+      <h2> Stuff you can apply to your veggie </h2>
+      {% for input in inputs_user %}
+      <div class="input-card">  
+          <p>{{ input.name }}
+          <p>${{ input.cost }}</p>
+      <form action="" method="post">
+          {% csrf_token %}
+          <button type="submit" class="add-btn">Apply</button>
+      </form>
+      </div>
+      {% endfor %}
+  </div>
   </div>
 </div>
 
