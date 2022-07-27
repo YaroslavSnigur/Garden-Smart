@@ -36,6 +36,8 @@ class Input(models.Model):
     description = models.TextField(max_length=250)
     cost = models.FloatField("Cost ($/use)", default = 0.0)
 
+    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     #add user model later
@@ -60,4 +62,3 @@ class Veg(models.Model):
 
     def __str__(self):
         return self.name
-

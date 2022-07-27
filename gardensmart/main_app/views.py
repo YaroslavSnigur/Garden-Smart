@@ -61,9 +61,7 @@ def veggies_create(request):
 
 
     seedslist = []
-    # seedslist = list(seeds)
-    # print(seedslist)
-    
+
     for seed in seeds:
 
         seedobj = {}
@@ -73,26 +71,42 @@ def veggies_create(request):
         seedobj['cost'] = seed.cost
         seedslist.append(seedobj)
 
+
+  
+
+
     return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES, "seedslist": seedslist})
+
 
 
 def veggies_add(request):
 
     if request.method == 'POST':
         
-        print(f'new vegetable planted is {request.POST["planted"]}')
-        
-        userid = request.user
+      print(f'new vegetable planted is {request.POST["planted"]}')
+      
+      userid = request.user
 
-        veg = Veg.objects.create(
-            name = request.POST["name"],
-            description= request.POST["description"],
-            cost = request.POST["cost"],
-            date = request.POST["date"],
-            planted = request.POST["planted"],
-            user = userid,
-            stage = request.POST["stage"],
-        )
+      veg = Veg.objects.create(
+          name = request.POST["name"],
+          description= request.POST["description"],
+          cost = request.POST["cost"],
+          date = request.POST["date"],
+          planted = request.POST["planted"],
+          user = userid,
+          stage = request.POST["stage"],
+      )
+
+      #updating the cost
+      # profile = Profile.objects.get("user" = userid)
+      # totalexpenses = profile.expenses
+      # expenses = request.POST["cost"]*request.POST["planted"]
+      # print(f'profile expense is {totalexpenses} and additional cost is {expense}')
+
+      
+
+
+    
     #return redirect('veg_create')
     return redirect('index')
 
