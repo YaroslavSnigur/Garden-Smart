@@ -36,18 +36,26 @@
   <div class="inputs-choices">
     <!--Seperate into 3 columns or divs for inputs-->
     <div class="basket">
-      <h2> Stuff you can apply to your veggie </h2>
+      <h2>Fertilizers, Pesticides, and Tools</h2>
+      <h4>Total Garden Spending ($): {{ expenses }}</h4>
       {% for input in inputs_user %}
-      <div class="input-card">  
-          <p>{{ input.name }}
-          <p>${{ input.cost }}</p>
-      <form action="" method="post">
-          {% csrf_token %}
+      <form action="{% url 'input_apply' veg.id input.id %}" method="post">
+        {% csrf_token %}
+        <div class="input-card">
+          <h3>{{ input.name }}</h3>
+          <h4>Cost: ${{ input.cost }}/use</h4>
+
+          {% if input.category == "Tools"%}
+          <button type="submit" class="add-btn">Rent</button>
+          {% else %}
           <button type="submit" class="add-btn">Apply</button>
+
+          {% endif %}
+        </div>
       </form>
-      </div>
+
       {% endfor %}
-  </div>
+    </div>
   </div>
 </div>
 
