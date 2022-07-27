@@ -20,10 +20,6 @@ STAGES = (
     ("H", "Harvest-Ready"),
 )
 
-class Profile(models.Model):
-    name = models.CharField(max_length = 50)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    expenses = models.FloatField("Amount Spent ($)", default = 0.0)
 
 
 class Input(models.Model):
@@ -45,6 +41,11 @@ class Input(models.Model):
 
     #add get absolute url later
 
+class Profile(models.Model):
+    name = models.CharField(max_length = 50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    expenses = models.FloatField("Amount Spent ($)", default = 0.0)
+    inputs = models.ManyToManyField(Input, blank=True)
 
 class Veg(models.Model):
     name = models.CharField(max_length = 50)
