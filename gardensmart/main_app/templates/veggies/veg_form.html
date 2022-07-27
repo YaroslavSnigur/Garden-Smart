@@ -3,7 +3,6 @@
 <h1>Plant Vegetable Seeds</h1>
 
 {{ seedslist |json_script:"seedArray" }}
-
 <form action="{% url 'veg_add' %}" method="POST">
   {% csrf_token %}
   <div class="planting-form-div">
