@@ -25,7 +25,9 @@
     <div class="input-card">    
         <p>{{ input.name }}
         <p>${{ input.cost }}</p>
-        <a href="" class="add-btn">add</a>
+        <form action="{% url 'assoc_input' input.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="add-btn">add</button>
     </div>
     {% endif %}
     {% endfor %} 
@@ -37,7 +39,9 @@
         <div class="input-card">    
             <p>{{ input.name }}
             <p>${{ input.cost }}</p>
-            <a href="" class="add-btn">add</a>
+            <form action="{% url 'assoc_input' input.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="add-btn">add</button>
         </div>
     {% endif %}
     {% endfor %} 
@@ -49,7 +53,9 @@
         <div class="input-card">    
             <p>{{ input.name }}
             <p>${{ input.cost }}</p>
-            <a href="" class="add-btn">add</a>
+            <form action="{% url 'assoc_input' input.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="add-btn">add</button>
         </div>
     {% endif %}
     {% endfor %} 
@@ -59,15 +65,20 @@
 
 <div class="basket">
     <h2> Your Basket </h2>
-    {% for input in inputs_user %}
-    <div class="input-card">  
-        <p>{{ input.name }}
-        <p>${{ input.cost }}</p>
-    <form action="{% url 'unassoc_input' input.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="add-btn">Remove</button>
-    </form>
-    </div>
-    {% endfor %}
+    {% if inputs_user.count %}
+        {% for input in inputs_user %}
+
+        <div class="input-card">  
+            <p>{{ input.name }}
+            <p>${{ input.cost }}</p>
+        <form action="{% url 'unassoc_input' input.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="add-btn">Remove</button>
+        </form>
+        </div>
+        {% endfor %}
+    {% else %}
+      <h5>No Inputs :(</h5>
+    {% endif %}
 </div>
 {% endblock %}

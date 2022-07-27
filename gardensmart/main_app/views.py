@@ -97,10 +97,6 @@ def veggies_add(request):
     return redirect('index')
 
 
-
-
-
-
 #this adds a new kind of vegetable to the store, does not include date, planted or stage
 class VegCreate(CreateView):
     
