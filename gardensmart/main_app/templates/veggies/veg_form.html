@@ -9,7 +9,7 @@
   <div class="planting-form-div">
     <div class="plant-form">
       <h4>Seeds (Dropdown):</h4>
-      <select id="veg-seed" name="name">
+      <select id="veg-seed" name="name" required>
         {% for seed in seeds %}
         <option value="{{seed.name}}">{{ seed.name }}</option>
         {% endfor %}
@@ -22,11 +22,11 @@
       <input type="hidden" id="veg-cost-input" name="cost" />
       <!--form fields-->
       <h4>Date:</h4>
-      <input type="date" name="date" />
+      <input type="date" name="date" required />
       <h4>Seeds Used:</h4>
-      <input type="number" name="planted" />
+      <input type="number" name="planted" required />
       <h4>Stage:</h4>
-      <select id="stage" name="stage">
+      <select id="stage" name="stage" required>
         {% for idx in stages %}
         <option value="{{idx.0}}">{{idx.1}}</option>
         {% endfor %}

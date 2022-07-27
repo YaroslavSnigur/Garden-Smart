@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>My Garden</h1>
-<h3>Total Spending ($): </h3>
+<h3>Total Spending ($): {{expenses}}</h3>
 <div class="cards">
   {% for veg in veggies %}
   <a href="{% url 'detail' veg.id %}">
