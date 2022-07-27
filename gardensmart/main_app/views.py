@@ -6,6 +6,9 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+#turning serialize querysets with django objects to dictionary
+from django.forms.models import model_to_dict
+
 #login and signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -53,9 +56,24 @@ def veggies_index(request):
 
 #makes form for adding veggie
 def veggies_create(request):
-    seeds = Input.objects.all().filter(category='seeds')
+    seeds = Input.objects.all().filter(category='Seeds')
+    print (seeds)
+
+
+    seedslist = []
+    # seedslist = list(seeds)
+    # print(seedslist)
     
-    return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES})
+    for seed in seeds:
+
+        seedobj = {}
+        seedobj['name'] = seed.name
+        seedobj['category'] = seed.category
+        seedobj['description'] = seed.description
+        seedobj['cost'] = seed.cost
+        seedslist.append(seedobj)
+
+    return render(request, 'veggies/veg_form.html', { 'seeds': seeds, 'stages': STAGES, "seedslist": seedslist})
 
 
 def veggies_add(request):
@@ -75,12 +93,8 @@ def veggies_add(request):
             user = userid,
             stage = request.POST["stage"],
         )
-        
-        
-
-    #veggies = Veg.objects.all()
-    return redirect('veg_create')
-    #return redirect('index')
+    #return redirect('veg_create')
+    return redirect('index')
 
 
 
@@ -129,3 +143,8 @@ def inputs_index(request):
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     return render(request, 'veggies/detail.html', { 'veg': veg })
+
+def garden_store(request):
+  inputs = Input.objects.all()
+  veggies = Veg.objects.all()
+  return render(request, 'main_app/garden_store.html', { 'veggies': veggies, 'inputs': inputs })

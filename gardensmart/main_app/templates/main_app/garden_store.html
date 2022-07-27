@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Garden Store</h1>
+
+<div class="categories">
+  <div class="fertilizers">
+    <h2>Fertilizers</h2>
+    {% for input in inputs %}
+        {% if input.category == "Fertilizers" %}
+        <div class="input-card">    
+            <p>{{ input.name }}
+            <p>${{ input.cost }}</p>
+            <a href="" class="add-btn">add</a>
+        </div>
+    {% endif %}
+    {% endfor %} 
+  </div>
+  <div class="pesticides">
+    <h2>Pesticides</h2>
+    {% for input in inputs %}
+        {% if input.category == "Pesticides" %}
+    <div class="input-card">    
+        <p>{{ input.name }}
+        <p>${{ input.cost }}</p>
+        <a href="" class="add-btn">add</a>
+    </div>
+    
+    
+    {% endif %}
+    {% endfor %} 
+  </div>
+  <div class="tools">
+    <h2>Tools</h2>
+    {% for input in inputs %}
+        {% if input.category == "Tools" %}
+        <div class="input-card">    
+            <p>{{ input.name }}
+            <p>${{ input.cost }}</p>
+            <a href="" class="add-btn">add</a>
+        </div>
+    {% endif %}
+    {% endfor %} 
+  </div>
+  <div class="seeds">
+    <h2>Seeds</h2>
+    {% for input in inputs %}
+        {% if input.category == "Seeds" %}
+        <div class="input-card">    
+            <p>{{ input.name }}
+            <p>${{ input.cost }}</p>
+            <a href="" class="add-btn">add</a>
+        </div>
+    {% endif %}
+    {% endfor %} 
+  </div>
+</div>
+</div>
+
+<div class="basket">
+    <h2> Basket </h2>
+</div>
+{% endblock %}
