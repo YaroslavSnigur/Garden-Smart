@@ -157,7 +157,9 @@ def inputs_index(request):
 
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
-    return render(request, 'veggies/detail.html', { 'veg': veg })
+    p = Profile.objects.get(user_id=request.user.id)
+    inputs_user = p.inputs.all()
+    return render(request, 'veggies/detail.html', { 'veg': veg, 'inputs_user': inputs_user })
 
 def garden_store(request):
   p = Profile.objects.get(user_id=request.user.id)
@@ -173,7 +175,7 @@ def assoc_input(request, input_id):
   return redirect('garden_store')
 
 
-def unassoc_input(request, user_id, input_id):
-  userid = request.user
-  Input.objects.get(id=input_id).user.remove(userid)
-  return redirect('garden_store', userid)
+def unassoc_input(request, input_id):
+  userid = request.user.id
+  Profile.objects.get(user_id=userid).inputs.remove(input_id)
+  return redirect('garden_store')
