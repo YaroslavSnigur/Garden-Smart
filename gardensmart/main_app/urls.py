@@ -17,13 +17,4 @@ urlpatterns= [
     path('veggies/add/', views.veggies_add, name='veg_add'),
     path('garden_store/<int:input_id>/assoc_input/', views.assoc_input, name='assoc_input'),
     path('garden_store/<int:input_id>/unassoc_input/', views.unassoc_input, name='unassoc_input'),
-
-
-
-
-
-
-
-
-
 ]
