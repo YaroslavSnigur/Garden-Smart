@@ -125,15 +125,24 @@ def veggies_add(request):
 
 #this adds a new kind of vegetable to the store, does not include date, planted or stage
 class VegCreate(CreateView):
-    
-    model = Veg    
+  model = Veg    
 
-    fields = [ 'name', 'description', 'cost' ]
-    success_url= '/veggies/'
+  fields = [ 'name', 'description', 'cost' ]
+  success_url= '/veggies/'
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+class VegDelete(DeleteView):
+  model = Veg
+  success_url = '/veggies/'
+
+
+class VegUpdate(UpdateView):
+  model = Veg
+  fields = ['stage']
+  success_url = '/veggies/'
 
 
 #there will be a seperate create to add instances of a vegetable to a garden
