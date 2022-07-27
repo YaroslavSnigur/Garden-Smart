@@ -132,7 +132,8 @@ def veg_detail(request, veg_id):
     return render(request, 'veggies/detail.html', { 'veg': veg })
 
 def garden_store(request):
-  inputs_user = Input.objects.all().filter(user=request.user)
+  p = Profile.objects.get(user_id=request.user.id)
+  inputs_user = p.inputs.all()
   inputs = Input.objects.all()
   veggies = Veg.objects.all()
   return render(request, 'main_app/garden_store.html', { 'veggies': veggies, 'inputs': inputs, 'inputs_user': inputs_user })
