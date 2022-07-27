@@ -190,13 +190,17 @@ def garden_store(request):
 
 def assoc_input(request, input_id):
   userid = request.user.id
-  Profile.objects.get(user_id=userid).inputs.add(input_id)
+  p = Profile.objects.get(user_id=userid)
+  idx = p.id
+  Profile.objects.get(id=idx).inputs.add(input_id)
   return redirect('garden_store')
 
 
 def unassoc_input(request, input_id):
   userid = request.user.id
-  Profile.objects.get(user_id=userid).inputs.remove(input_id)
+  p = Profile.objects.get(user_id=userid)
+  idx = p.id
+  Profile.objects.get(id=idx).inputs.remove(input_id)
   return redirect('garden_store')
 
 
@@ -210,5 +214,4 @@ def input_apply(request, veg_id, input_id):
   p.expenses = totalexpenses
   p.save()  
 
-  #return redirect('index')
   return redirect('detail', veg_id=veg_id)

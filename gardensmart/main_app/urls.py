@@ -18,13 +18,4 @@ urlpatterns= [
     path('garden_store/<int:input_id>/assoc_input/', views.assoc_input, name='assoc_input'),
     path('garden_store/<int:input_id>/unassoc_input/', views.unassoc_input, name='unassoc_input'),
     path('veggies/<int:veg_id>/apply/<int:input_id>', views.input_apply, name='input_apply'),
-
-
-
-
-
-
-
-
-
 ]

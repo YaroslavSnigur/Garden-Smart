@@ -17,7 +17,7 @@
   </div>
   <div class="input-container">
     <h2>Pesticide</h2>
-    {% for input in input_list %} {% if input.category == "Pesticide" %}
+    {% for input in input_list %} {% if input.category == "Pesticides" %}
     <div class="data-input-container">
       <a href="{% url 'inputs_detail' input.id %}">
         <div><p>{{ input.name }}</p></div>
@@ -36,6 +36,7 @@
         <div><p>{{ input.name }}</p></div>
         <div class="cost-data-input-container">
           <p>Cost: ${{ input.cost }}</p>
+          
         </div>
       </a>
     </div>
