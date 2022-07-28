@@ -62,13 +62,12 @@ def veggies_index(request):
 
     #show only vegetables that has this user
     veggies = Veg.objects.all().filter(user_id=request.user.id)
-    
     #grab the cost with this user profile
     profile = Profile.objects.get(user_id = request.user.id)
     expenses = profile.expenses
     #print(f'total expenses on this profile is {expenses}')
 
-    return render(request, 'veggies/index.html', { 'veggies': veggies, "expenses": expenses })
+    return render(request, 'veggies/index.html', { 'veggies': veggies, "expenses": expenses})
 
 #makes form for adding veggie
 def veggies_create(request):
