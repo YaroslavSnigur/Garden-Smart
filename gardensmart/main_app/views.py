@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Veg, Input, Profile, STAGES, User
+from .models import Veg, Input, Profile, STAGES, User, Photo
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,14 @@ from django.forms.models import model_to_dict
 #login and signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+#photo related imports
+import uuid
+import boto3
+
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'garden-smart-ga-project'
+
 
 #User Signup function
 def signup(request):
@@ -224,3 +232,46 @@ def input_apply(request, veg_id, input_id):
   p.save()  
 
   return redirect('detail', veg_id=veg_id)
+
+def add_photo(request, veg_id):
+
+    #grab existing photoset
+    currentphoto = Photo.objects.filter(veg_id=veg_id).first()
+    print(f'Current photo query set: {currentphoto}')
+
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+
+        #if current photo is empty
+        if not currentphoto:
+          # just in case something goes wrong
+          try:
+              s3.upload_fileobj(photo_file, BUCKET, key)
+              # build the full url string
+              url = f"{S3_BASE_URL}{BUCKET}/{key}"
+              # we can assign to veg_id or veg (if you have a veg object)
+              photo = Photo(url=url, veg_id=veg_id)
+              photo.save()
+          except Exception as e:
+              print('An error occurred uploading file to S3')
+              print('%s' % type(e))
+        #if there is a current photo already, overwrite it
+        else:
+          try:
+              s3.upload_fileobj(photo_file, BUCKET, key)
+              # build the full url string
+              url = f"{S3_BASE_URL}{BUCKET}/{key}"
+              # we can assign to veg_id or veg (if you have a veg object)
+              #currentphoto = Photo(url=url, veg_id=veg_id)
+              currentphoto.url= url
+              currentphoto.veg_id=veg_id
+              currentphoto.save()
+          except Exception as e:
+              print('An error occurred uploading file to S3')
+              print('%s' % type(e))
+    return redirect('detail', veg_id=veg_id)
