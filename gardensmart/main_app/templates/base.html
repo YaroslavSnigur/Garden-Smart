@@ -10,20 +10,19 @@
   </head>
   <body>
     <header class="navbar-fixed">
+      <a href="/"
+        ><img src="{% static 'images/garden_smart.png' %}" class="brand-logo"
+      /></a>
       <nav>
-        <a href="/" class="brand-logo"
-          ><img src="{% static 'images/logo.png' %}"
-        /></a>
         <a href="{% url 'about' %}" class="nav-about">About</a>
         {% if user.is_authenticated %}
         <a href="{% url 'garden_store' %}" class="nav-store">Garden Store</a>
         <a href="{% url 'index' %}" class="nav-index">My Garden</a>
         <a href="{% url 'veg_create' %}" class="nav-add">Add A Vegetable</a>
-        <a href="{% url 'inputs_index' %}" class="nav-inputs">Store Manager</a>
         <a href="{% url 'inputs_create' %}" class="nav-inputs-add"
           >Add An Input</a
         >
-        <div class="username">Welcome, {{ user.username }}</div>
+        <a class="username">Welcome, {{ user.username }}</a>
         <a href="{% url 'logout' %}" class="log-out">Log Out</a> {% else %}
         <a href="{% url 'login' %}" class="log-in">Log In</a>
         <a href="{% url 'signup' %}" class="sign-up">Sign Up</a> {% endif %}
