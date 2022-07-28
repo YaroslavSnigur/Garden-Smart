@@ -4,11 +4,25 @@
 <div class="veg-detail-content">
   <div class="veg-profile">
     <div class="veg-image-div">
-      <!--insert image tag here-->
-      <img
-        class="veg-image"
-        src="https://i5.walmartimages.ca/images/Enlarge/008/475/6000190008475.jpg"
-      />
+      <!--insert image and add photo button here-->
+      <!--limited to 1 photo for now-->
+      {% for photo in veg.photo_set.all %}
+      <img class="veg-image" src="{{photo.url}}" />
+      {% empty %}
+      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+      {% endfor %}
+
+      <form
+        action="{% url 'add_photo' veg.id %}"
+        enctype="multipart/form-data"
+        method="POST"
+        class="card-panel"
+      >
+        {% csrf_token %}
+        <input type="file" name="photo-file" />
+        <br /><br />
+        <input type="submit" class="btn" value="Upload Photo" />
+      </form>
     </div>
     <div class="veg-info-and-buttons">
       <div class="veg-info">
@@ -41,7 +55,6 @@
   <div class="inputs-choices">
     <!--Seperate into 3 columns or divs for inputs-->
     <div class="basket">
-
       <h2>Fertilizers, Pesticides, and Tools</h2>
       <h4>Total Garden Spending ($): {{ expenses }}</h4>
       {% for input in inputs_user %}
