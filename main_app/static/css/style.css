@@ -175,6 +175,41 @@ h1 {
   right: 165px;
 }
 
+/*============HOME PAGE ==============*/
+.home-content {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/static/images/gardenbackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.welcome {
+  margin-top: 100px;
+  width: 450px;
+  height: 250px;
+  background-color: rgb(175, 243, 73);
+  border: 1px solid black;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #30cc3d;
+}
+
 /* MY GARDEN */
 .cards {
   display: flex;
@@ -386,7 +421,6 @@ table {
   margin-right: auto;
 }
 
-
 input[type="text"],
 select {
   min-width: 100%;
@@ -439,7 +473,6 @@ input[type="option"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 
 input[type="submit"]:hover {
   background-color: rgba(171, 115, 6, 1);
