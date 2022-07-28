@@ -218,6 +218,9 @@ h1 {
   align-items: center;
   max-width: 640px;
   height: 100vh;
+  background-color: #30cc3d;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .veg-profile {
@@ -225,33 +228,85 @@ h1 {
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  height: 250px;
+  height: 300px;
 }
 
 .veg-image-div {
   width: 200px;
+  height: 300px;
+  margin: 5px;
 }
 
 .veg-image {
   width: 200px;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.photo-btn-div {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+input[type="file"] {
+  margin-bottom: 0;
+}
+
+.photo-btn {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.veg-info-and-buttons {
+  width: 440px;
+  height: 300px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .veg-info {
-  width: 410px;
-  height: 220px;
+  width: 100%;
+  height: 250px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
-.veg-edit-del-btns {
+.veg-detail-btns {
   width: 100%;
-  height: 30px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.veg-edit-del-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.update-btn {
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: yellow;
+}
+
+.delete-btn {
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  background-color: rgb(212, 33, 33);
+  border-radius: 5px;
 }
 
 .input-choices {
@@ -298,26 +353,43 @@ h1 {
   font-weight: 500;
   text-align: center;
 }
+
 .add-btn {
   text-align: center;
 }
+
 /*===========STYLING FOR ADDING FORM ============*/
 
 .add-form {
   background-color: #d9d9d9;
-  width: 40%;
+  min-width: 640px;
   height: 40%;
   text-align: center;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 30px;
+  border-radius: 4px;
 }
+
+.form {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 input[type="text"],
 select {
-  width: 100%;
+  min-width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -327,7 +399,7 @@ select {
 }
 
 input[type="submit"] {
-  width: 50%;
+  width: 20%;
   background-color: #ffffff;
   color: black;
   padding: 14px 20px;
@@ -347,6 +419,27 @@ input[type="number"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+input[type="date"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="option"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 
 input[type="submit"]:hover {
   background-color: rgba(171, 115, 6, 1);
@@ -388,4 +481,22 @@ input[type="submit"]:hover {
 
 .cost-data-input-container {
   margin-left: 10px;
+}
+
+/*===========STYLING FOR Plant Veg ============*/
+.plant-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.planting-form-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.input-container {
+  margin-left: 15px;
 }
