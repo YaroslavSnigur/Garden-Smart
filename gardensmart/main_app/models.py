@@ -63,3 +63,11 @@ class Veg(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    veg = models.ForeignKey(Veg, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for veg_id: {self.veg_id} @{self.url}"
