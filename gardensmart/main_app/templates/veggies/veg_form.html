@@ -1,40 +1,48 @@
 {% extends 'base.html' %} {% block content %}
-
-<h1>Plant Vegetable Seeds</h1>
-
+<div class="add-form">
+<div><h1>Plant Vegetable Seeds</h1></div>
+<div class="form">
 {{ seedslist |json_script:"seedArray" }}
 <form action="{% url 'veg_add' %}" method="POST">
   {% csrf_token %}
-  <div class="planting-form-div">
-    <div class="plant-form">
-      <h4>Seeds (Dropdown):</h4>
+      <div class="plant-form-row">
+      <div><h4>Seeds (Dropdown):</h4></div>
+      <div class="input-container">
       <select id="veg-seed" name="name" required>
         {% for seed in seeds %}
         <option value="{{seed.name}}">{{ seed.name }}</option>
         {% endfor %}
-      </select>
+      </select></div></div>
 
       <!-- hidden inputs to set name, description, etc-->
-      <h4 id="veg-desc"></h4>
-      <input type="hidden" id="veg-desc-input" name="description" />
-      <h4 id="veg-cost"></h4>
-      <input type="hidden" id="veg-cost-input" name="cost" />
+      <div class="plant-form-row">
+      <div><h4 id="veg-desc"></h4></div>
+      <div class="input-container">
+        <input type="hidden" id="veg-desc-input" name="description" /></div></div>
+    
+    <div class="plant-form-row">
+      <div><h4 id="veg-cost"></h4></div>
+      <div class="input-container">
+        <input type="hidden" id="veg-cost-input" name="cost" /></div></div>
       <!--form fields-->
-      <h4>Date:</h4>
-      <input type="date" name="date" required />
-      <h4>Seeds Used:</h4>
-      <input type="number" name="planted" required />
-      <h4>Stage:</h4>
-      <select id="stage" name="stage" required>
+      <div class="plant-form-row">
+      <div><h4>Date:</h4></div>
+      <div class="input-container"><input type="date" name="date" required /></div></div>
+      <div class="plant-form-row">
+      <div><h4>Seeds Used:</h4></div>
+      <div class="input-container"><input type="number" name="planted" required /></div></div>
+      <div class="plant-form-row">
+      <div><h4>Stage:</h4></div>
+      <div class="input-container"><select id="stage" name="stage" required>
         {% for idx in stages %}
         <option value="{{idx.0}}">{{idx.1}}</option>
         {% endfor %}
-      </select>
+      </select></div></div>
     </div>
-  </div>
-  <input type="submit" value="Submit" class="btn" />
+ <div>
+  <input type="submit" value="Submit" class="btn"></div>
 </form>
-
+</div>
 <script type="text/javascript">
   //capture the seedArray passed in
   const seedsList = JSON.parse(
@@ -70,5 +78,6 @@
     document.getElementById("veg-cost-input").value = cost;
   });
 </script>
+
 
 {% endblock %}

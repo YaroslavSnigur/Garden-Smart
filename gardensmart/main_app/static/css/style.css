@@ -298,26 +298,37 @@ h1 {
   font-weight: 500;
   text-align: center;
 }
+
 .add-btn {
   text-align: center;
 }
+
 /*===========STYLING FOR ADDING FORM ============*/
 
 .add-form {
   background-color: #d9d9d9;
-  width: 40%;
+  min-width: 640px;
   height: 40%;
   text-align: center;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 30px;
+  border-radius: 4px;
+}
+
+.form {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 input[type="text"],
 select {
-  width: 100%;
+  min-width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -327,7 +338,7 @@ select {
 }
 
 input[type="submit"] {
-  width: 50%;
+  width: 20%;
   background-color: #ffffff;
   color: black;
   padding: 14px 20px;
@@ -347,6 +358,27 @@ input[type="number"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+input[type="date"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="option"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 
 input[type="submit"]:hover {
   background-color: rgba(171, 115, 6, 1);
@@ -388,4 +420,22 @@ input[type="submit"]:hover {
 
 .cost-data-input-container {
   margin-left: 10px;
+}
+
+/*===========STYLING FOR Plant Veg ============*/
+.plant-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.planting-form-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.input-container {
+  margin-left: 15px;
 }
