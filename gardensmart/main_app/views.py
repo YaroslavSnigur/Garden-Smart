@@ -131,17 +131,6 @@ def veggies_add(request):
     return redirect('index')
 
 
-#this adds a new kind of vegetable to the store, does not include date, planted or stage
-class VegCreate(CreateView):
-  model = Veg    
-
-  fields = [ 'name', 'description', 'cost' ]
-  success_url= '/veggies/'
-
-  def form_valid(self, form):
-      form.instance.user = self.request.user
-      return super().form_valid(form)
-
 class VegDelete(DeleteView):
   model = Veg
   success_url = '/veggies/'
@@ -183,11 +172,13 @@ def inputs_index(request):
 def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     p = Profile.objects.get(user_id=request.user.id)
-    inputs_user = p.inputs.all()
+    print(f'Current profile: {p}')
 
+    #only show inputs that is in your profile basket    
+    inputs_user = p.inputs.filter(category__in=["Fertilizers", "Pesticides", "Tools"])
+    print(f'All current inputs: {inputs_user}')
 
     #update stages to display properly
-
     tempstage = veg.stage
     for idx in STAGES:
       if tempstage == idx[0]:
@@ -267,7 +258,6 @@ def add_photo(request, veg_id):
               # build the full url string
               url = f"{S3_BASE_URL}{BUCKET}/{key}"
               # we can assign to veg_id or veg (if you have a veg object)
-              #currentphoto = Photo(url=url, veg_id=veg_id)
               currentphoto.url= url
               currentphoto.veg_id=veg_id
               currentphoto.save()
