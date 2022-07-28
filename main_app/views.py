@@ -152,7 +152,7 @@ class InputDetail(DetailView):
 class InputCreate(CreateView):
   model = Input
   fields = '__all__'
-  success_url = '/inputs/'
+  success_url = '/garden_store/'
 
 class InputUpdate(UpdateView):
   model = Input
