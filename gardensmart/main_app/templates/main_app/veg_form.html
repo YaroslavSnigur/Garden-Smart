@@ -1,10 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Produce Stage of <span class="teal-text">{{object.name}}</span></h1>
-<form action="" method="post">
+<div class="add-form">
+<div><h1>Produce Stage of <span class="teal-text">{{object.name}}</span></h1></div>
+<div class="form"><form action="" method="post">
+  <div>
   {% csrf_token %}
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Submit!" class="btn" />
-</form>
+</div>
+<div><input type="submit" value="Submit" class="btn"></div>
+</form></div></div>
 {% endblock %}
+
