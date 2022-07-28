@@ -66,8 +66,35 @@ def veggies_index(request):
     profile = Profile.objects.get(user_id = request.user.id)
     expenses = profile.expenses
     #print(f'total expenses on this profile is {expenses}')
+    veggies_arr = []
 
-    return render(request, 'veggies/index.html', { 'veggies': veggies, "expenses": expenses})
+    for veg in veggies:
+
+      obj={}
+      obj['id'] = veg.id
+      obj['name'] = veg.name
+      obj['date'] = veg.date
+      obj['planted'] = veg.planted
+      obj['stage'] = veg.stage
+      
+      print(f'Current ID in veggies: {veg.id}')
+      photo = Photo.objects.filter(veg_id = veg.id)
+      #print(f'photo matched is {photo} and veg is {veg}')
+
+      if not photo:
+        print(f"If not photo is working!!")
+        url = '/static/images/no-image.png'
+        obj['url'] = url
+      else:
+        photo = Photo.objects.get(veg_id = veg.id)
+        print(f'photo matched is {photo} with url {photo.url}')
+        url = photo.url
+        obj['url'] = url
+
+      veggies_arr.append(obj)
+
+
+    return render(request, 'veggies/index.html', { 'veggies': veggies_arr, "expenses": expenses})
 
 #makes form for adding veggie
 def veggies_create(request):
@@ -175,7 +202,7 @@ def veg_detail(request, veg_id):
 
     #only show inputs that is in your profile basket    
     inputs_user = p.inputs.filter(category__in=["Fertilizers", "Pesticides", "Tools"])
-    print(f'All current inputs: {inputs_user}')
+   
 
     #update stages to display properly
     tempstage = veg.stage
