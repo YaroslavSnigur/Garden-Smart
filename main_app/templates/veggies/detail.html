@@ -1,7 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Vegetable Profile</h1>
+
 <div class="veg-detail-content">
+  <h1>Vegetable Profile</h1>
   <div class="veg-profile">
     <div class="veg-image-div">
       <!--insert image and add photo button here-->
@@ -9,7 +10,8 @@
       {% for photo in veg.photo_set.all %}
       <img class="veg-image" src="{{photo.url}}" />
       {% empty %}
-      <div class="">No Photos Uploaded</div>
+      <img class="veg-image" src="/static/images/no-image.png" />
+      
       {% endfor %}
 
       <div class="veg-photo-upload-btns">
