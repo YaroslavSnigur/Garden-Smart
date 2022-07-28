@@ -12,6 +12,7 @@ footer.page-footer {
   padding-top: 0;
   text-align: right;
   background-color: rgb(76, 93, 49);
+  color: white;
 }
 
 h1 {
@@ -189,6 +190,10 @@ h1 {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+.cards > * {
+  flex: 1 1;
 }
 
 .card {
@@ -219,6 +224,8 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
+
+.basket
 
 /*===========STYLING FOR VEG DETAIL.HTML ============*/
 
@@ -347,6 +354,8 @@ input[type="file"] {
 }
 
 .input-card {
+  margin: 20px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -354,6 +363,7 @@ input[type="file"] {
   background: #bfe2da;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .basket {
@@ -363,6 +373,15 @@ input[type="file"] {
   font-style: normal;
   font-weight: 500;
   text-align: center;
+}
+.basket-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.basket-item > * {
+  flex: 1 1;
+  margin: 20px;
 }
 
 .add-btn {
@@ -523,4 +542,3 @@ input[value="login"] {
   cursor: pointer;
   text-transform: uppercase;
 }
-

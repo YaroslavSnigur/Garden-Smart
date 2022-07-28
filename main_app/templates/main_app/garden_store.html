@@ -68,9 +68,9 @@
 
 <div class="basket">
     <h2> Your Basket </h2>
+    <div class="basket-item">
     {% if inputs_user.count %}
         {% for input in inputs_user %}
-
         <div class="input-card">  
             <p>{{ input.name }}</p>
             <p>${{ input.cost }}</p>
@@ -79,9 +79,11 @@
             <button type="submit" class="add-btn">Remove</button>
         </form>
         </div>
+ 
         {% endfor %}
     {% else %}
       <h5>No Inputs :(</h5>
     {% endif %}
+    </div>
 </div>
 {% endblock %}
