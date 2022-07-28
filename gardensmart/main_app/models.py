@@ -18,9 +18,8 @@ INPUTS = (
 STAGES = (
     ("S", "Seeded"),
     ("G","Growth"),
-    ("H", "Harvest-Ready"),
+    ("H", "Harvest"),
 )
-
 
 
 class Input(models.Model):

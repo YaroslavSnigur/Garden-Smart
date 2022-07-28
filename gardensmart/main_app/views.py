@@ -173,13 +173,12 @@ def veg_detail(request, veg_id):
     veg = Veg.objects.get(id=veg_id)
     p = Profile.objects.get(user_id=request.user.id)
     print(f'Current profile: {p}')
-    #only show inputs that is in your basket
-    #inputs_user = p.inputs.all()
+
+    #only show inputs that is in your profile basket    
     inputs_user = p.inputs.filter(category__in=["Fertilizers", "Pesticides", "Tools"])
     print(f'All current inputs: {inputs_user}')
 
     #update stages to display properly
-
     tempstage = veg.stage
     for idx in STAGES:
       if tempstage == idx[0]:
