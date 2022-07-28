@@ -1,5 +1,16 @@
 {% extends 'base.html' %} {% block content %}
+<div class="home-content">
+  <div class="welcome">
+    <h1>Welcome to Garden-Smart!</h1>
 
-<h1>Home</h1>
+    <h3>Please Login or Sign Up to Begin!</h3>
+    <a href="{% url 'login' %}">
+      <button class="welcome-btn">Login</button>
+    </a>
+    <a href="{% url 'signup' %}">
+      <button class="welcome-btn">Sign Up</button>
+    </a>
+  </div>
+</div>
 
 {% endblock %}
