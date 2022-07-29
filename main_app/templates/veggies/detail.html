@@ -75,8 +75,8 @@
         <form action="{% url 'input_apply' veg.id input.id %}" method="post">
           {% csrf_token %}
           <div class="input-card">
-            <h3>{{ input.name }}</h3>
-            <h4>Cost: ${{ input.cost }}/use</h4>
+            <p>{{ input.name }}</p>
+            <p>Cost: ${{ input.cost }}/use</p>
 
             {% if input.category == "Tools"%}
             <button type="submit" class="add-btn">Rent</button>
