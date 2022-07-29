@@ -1,89 +1,79 @@
 {% extends 'base.html' %} {% block content %}
+<div class="garden-background">
+  <h1>Garden Store</h1>
 
-<h1>Garden Store</h1>
-
-<div class="categories">
-  <div class="fertilizers">
-    <h2>Fertilizers</h2>
-    {% for input in inputs %}
-        {% if input.category == "Fertilizers" %}
-        <div class="input-card">    
-            <p>{{ input.name }}</p>
-            <p>${{ input.cost }}</p>
-            <form action="{% url 'assoc_input' input.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="add-btn">add</button>
-            </form>
-        </div>
-    {% endif %}
-    {% endfor %} 
-  </div>
-  <div class="pesticides">
-    <h2>Pesticides</h2>
-    {% for input in inputs %}
-        {% if input.category == "Pesticides" %}
-    <div class="input-card">    
+  <div class="categories">
+    <div class="fertilizers">
+      <h2>Fertilizers</h2>
+      {% for input in inputs %} {% if input.category == "Fertilizers" %}
+      <div class="input-card">
         <p>{{ input.name }}</p>
         <p>${{ input.cost }}</p>
         <form action="{% url 'assoc_input' input.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="add-btn">add</button>
+          {% csrf_token %}
+          <button type="submit" class="add-btn">add</button>
         </form>
+      </div>
+      {% endif %} {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %} 
+    <div class="pesticides">
+      <h2>Pesticides</h2>
+      {% for input in inputs %} {% if input.category == "Pesticides" %}
+      <div class="input-card">
+        <p>{{ input.name }}</p>
+        <p>${{ input.cost }}</p>
+        <form action="{% url 'assoc_input' input.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="add-btn">add</button>
+        </form>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <div class="tools">
+      <h2>Tools</h2>
+      {% for input in inputs %} {% if input.category == "Tools" %}
+      <div class="input-card">
+        <p>{{ input.name }}</p>
+        <p>${{ input.cost }}</p>
+        <form action="{% url 'assoc_input' input.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="add-btn">add</button>
+        </form>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <div class="seeds">
+      <h2>Seeds</h2>
+      {% for input in inputs %} {% if input.category == "Seeds" %}
+      <div class="input-card">
+        <p>{{ input.name }}</p>
+        <p>${{ input.cost }}</p>
+        <form action="{% url 'assoc_input' input.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="add-btn">add</button>
+        </form>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
   </div>
-  <div class="tools">
-    <h2>Tools</h2>
-    {% for input in inputs %}
-        {% if input.category == "Tools" %}
-        <div class="input-card">    
-            <p>{{ input.name }}</p>
-            <p>${{ input.cost }}</p>
-            <form action="{% url 'assoc_input' input.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="add-btn">add</button>
-            </form>
-        </div>
-    {% endif %}
-    {% endfor %} 
-  </div>
-  <div class="seeds">
-    <h2>Seeds</h2>
-    {% for input in inputs %}
-        {% if input.category == "Seeds" %}
-        <div class="input-card">    
-            <p>{{ input.name }}</p>
-            <p>${{ input.cost }}</p>
-            <form action="{% url 'assoc_input' input.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="add-btn">add</button>
-            </form>
-        </div>
-    {% endif %}
-    {% endfor %} 
-  </div>
-</div>
-</div>
 
-<div class="basket">
-    <h2> Your Basket </h2>
+  <div class="basket">
+    <h2>Your Basket</h2>
     <div class="basket-item">
-    {% if inputs_user.count %}
-        {% for input in inputs_user %}
-        <div class="input-card">  
-            <p>{{ input.name }}</p>
-            <p>${{ input.cost }}</p>
+      {% if inputs_user.count %} {% for input in inputs_user %}
+      <div class="input-card">
+        <p>{{ input.name }}</p>
+        <p>${{ input.cost }}</p>
         <form action="{% url 'unassoc_input' input.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="add-btn">Remove</button>
+          {% csrf_token %}
+          <button type="submit" class="add-btn">Remove</button>
         </form>
-        </div>
- 
-        {% endfor %}
-    {% else %}
+      </div>
+
+      {% endfor %} {% else %}
       <h5>No Inputs :(</h5>
-    {% endif %}
+      {% endif %}
     </div>
+  </div>
 </div>
 {% endblock %}
