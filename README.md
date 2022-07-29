@@ -33,9 +33,9 @@ Online Database App for keeping track of your gardening endeavors! Plant various
 
 ## Authors/Collaborators
 
-paulryeung - (https://github.com/paulryeung)
-YaroslavSnigur - (https://github.com/YaroslavSnigur)
-bbcello - (https://github.com/bbcello)
+- paulryeung - (https://github.com/paulryeung)
+- YaroslavSnigur - (https://github.com/YaroslavSnigur)
+- bbcello - (https://github.com/bbcello)
 
 ## Next Steps (Possible Future Enhancements)
 
