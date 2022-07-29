@@ -1,15 +1,30 @@
 {% extends 'base.html' %} {% block content %}
 <div class="home-content">
   <div class="welcome">
+    {% if user.is_authenticated %}
+    <h1>Welcome back {{ user.username }}!</h1>
+    <br />
+    <h3>Click below to</h3>
+    <h3>Visit My Garden or Store!</h3>
+    <br />
+    <a href="{% url 'index' %}">
+      <button class="welcome-btn">My Garden</button>
+    </a>
+    <a href="{% url 'garden_store' %}">
+      <button class="welcome-btn">Visit Store</button>
+    </a>
+    {% else %}
     <h1>Welcome to Garden-Smart!</h1>
-
+    <br />
     <h3>Please Login or Sign Up to Begin!</h3>
+    <br />
     <a href="{% url 'login' %}">
       <button class="welcome-btn">Login</button>
     </a>
     <a href="{% url 'signup' %}">
       <button class="welcome-btn">Sign Up</button>
     </a>
+    {% endif %}
   </div>
 </div>
 
