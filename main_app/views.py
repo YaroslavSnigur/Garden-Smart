@@ -99,7 +99,12 @@ def veggies_index(request):
 #makes form for adding veggie
 def veggies_create(request):
     #update later to to be just seeds in basket.
-    seeds = Input.objects.all().filter(category='Seeds')
+    #seeds = Input.objects.all().filter(category='Seeds')
+    p = Profile.objects.get(user_id = request.user.id)
+    print(f'Here is profile of : {p}')
+    seeds = p.inputs.all().filter(category="Seeds")
+    print(f'Here is all seeds in profile: {seeds}')
+    #seeds = Profile.inputs.filter(category='Seeds')
     print (seeds)
 
     seedslist = []

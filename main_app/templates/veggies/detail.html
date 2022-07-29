@@ -1,95 +1,95 @@
 {% extends 'base.html' %} {% block content %}
-
-
-<div class="veg-detail-content">
-  <h1>Vegetable Profile</h1>
-  <div class="veg-profile">
-    <div class="veg-image-div">
-      <!--insert image and add photo button here-->
-      <!--limited to 1 photo for now-->
-      {% for photo in veg.photo_set.all %}
-      <img class="veg-image" src="{{photo.url}}" />
-      {% empty %}
-      <img class="veg-image" src="/static/images/no-image.png" />
-      
-      {% endfor %}
-
-      <div class="veg-photo-upload-btns">
-        <div class="photo-btn-div">
-          <form
-            action="{% url 'add_photo' veg.id %}"
-            enctype="multipart/form-data"
-            method="POST"
-            class="photo-form"
-          >
-            {% csrf_token %}
-            <input type="file" class="photo-btn" name="photo-file" />
-            <br /><br />
-            <button type="submit" class="photo-btn" value="Upload Photo"/> Upload Photo</button>
+<div class="veg-detail-background">
   
-          </form>
-        </div>
-      </div>
 
-    </div>
-    <div class="veg-info-and-buttons">
-      <div class="veg-info">
-        <div class="veg-info-left">
-          <h3>Name:</h3>
-          <h2>{{ veg.name }}</h2>
-          <h3>Description:</h3>
-          <p>{{ veg.description }}</p>
-        </div>
-        <div class="veg-info-right">
-          <h3>Cost: ${{veg.cost}} per plant</h3>
-          <h3>Date Seeded:</h3>
-          <h3>{{veg.date}}</h3>
-          <h3>Plants: {{veg.planted}}</h3>
-          <h3>Plant Stage: {{veg.stage}}</h3>
-        </div>
-      </div>
-      <div class="veg-detail-btns">
-        <!--insert divisions here-->
+  <div class="veg-detail-content">
+    <h1>Vegetable Profile</h1>
+    <div class="veg-profile">
+      <div class="veg-image-div">
         
-        <div class="veg-edit-del-div">
-          <form action="{% url 'veg_update' veg.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="update-btn">Update Plant Stage</button>
-          </form>
-          <form action="{% url 'veg_delete' veg.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="delete-btn">Delete</button>
-          </form>
+        {% for photo in veg.photo_set.all %}
+        <img class="veg-image" src="{{photo.url}}" />
+        {% empty %}
+        <img class="veg-image" src="/static/images/no-image.png" />
+        
+        {% endfor %}
+
+        <div class="veg-photo-upload-btns">
+          <div class="photo-btn-div">
+            <form
+              action="{% url 'add_photo' veg.id %}"
+              enctype="multipart/form-data"
+              method="POST"
+              class="photo-form"
+            >
+              {% csrf_token %}
+              <input type="file" class="photo-btn" name="photo-file" />
+              <br /><br />
+              <button type="submit" class="photo-btn" value="Upload Photo"/> Upload Photo</button>
+    
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="veg-info-and-buttons">
+        <div class="veg-info">
+          <div class="veg-info-left">
+            <h3>Name:</h3>
+            <h2>{{ veg.name }}</h2>
+            <h3>Description:</h3>
+            <h3>{{ veg.description }}</h3>
+          </div>
+          <div class="veg-info-right">
+            <h3>Cost: ${{veg.cost}} per plant</h3>
+            <h3>Date Seeded:</h3>
+            <h3>{{veg.date}}</h3>
+            <h3>Plants: {{veg.planted}}</h3>
+            <h3>Plant Stage: {{veg.stage}}</h3>
+          </div>
+        </div>
+        <div class="veg-detail-btns">
+          <!--insert divisions here-->
+          
+          <div class="veg-edit-del-div">
+            <form action="{% url 'veg_update' veg.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="update-btn">Update Plant Stage</button>
+            </form>
+            <form action="{% url 'veg_delete' veg.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          </div>
         </div>
       </div>
+      
     </div>
     
-  </div>
-  
-  <div class="inputs-choices">
-    <!--Seperate into 3 columns or divs for inputs-->
-    <div class="basket">
-      <h2>Fertilizers, Pesticides, and Tools</h2>
-      <h4>Total Garden Spending ($): {{ expenses }}</h4>
-      {% for input in inputs_user %}
-      <form action="{% url 'input_apply' veg.id input.id %}" method="post">
-        {% csrf_token %}
-        <div class="input-card">
-          <h3>{{ input.name }}</h3>
-          <h4>Cost: ${{ input.cost }}/use</h4>
+    <div class="inputs-choices">
+      <!--Seperate into 3 columns or divs for inputs-->
+      <div class="veg-basket">
+        <h2>Fertilizers, Pesticides, and Tools</h2>
+        <h4>Total Garden Spending ($): {{ expenses }}</h4>
+        {% for input in inputs_user %}
+        <form action="{% url 'input_apply' veg.id input.id %}" method="post">
+          {% csrf_token %}
+          <div class="input-card">
+            <h3>{{ input.name }}</h3>
+            <h4>Cost: ${{ input.cost }}/use</h4>
 
-          {% if input.category == "Tools"%}
-          <button type="submit" class="add-btn">Rent</button>
-          {% else %}
-          <button type="submit" class="add-btn">Apply</button>
+            {% if input.category == "Tools"%}
+            <button type="submit" class="add-btn">Rent</button>
+            {% else %}
+            <button type="submit" class="add-btn">Apply</button>
 
-          {% endif %}
-        </div>
-      </form>
+            {% endif %}
+          </div>
+        </form>
 
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
-
 {% endblock %}

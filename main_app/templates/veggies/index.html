@@ -1,17 +1,16 @@
 {% extends 'base.html' %} {% block content %}
-
+<div class="garden-background">
 <h1>My Garden</h1>
 <h3>Total Spending ($): {{expenses}}</h3>
+<br>
 <div class="cards">
   {% for veg in veggies %}
     
   <a href="{% url 'detail' veg.id %}">
-  <div class="card" style="background-image: url('{{ veg.url }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
-    <div class="card-content">
-      <span class="card-title">{{ veg.name }}</span>
-      <p>Date: {{ veg.date }}</p>
-      <p>Planted: {{ veg.planted }}</p>
-      <p>Stage: {{ veg.stage }}</p>
+    <div class="card-title-div">
+      <label class="card-title">{{ veg.name }}</label>
+      <label class="card-title">Planted: {{ veg.date }}</label>
+      <div class="card" style="background-image: url('{{ veg.url }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
     </div>
   </div>
   {% endfor %}
