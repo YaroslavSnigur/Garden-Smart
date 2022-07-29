@@ -13,6 +13,10 @@ Online Database App for keeping track of your gardening endeavors! Plant various
 - Open a web browser and open the link.
 
 ## Screenshots
+![home-page](https://user-images.githubusercontent.com/105737940/181748238-27b2fa11-95e1-4220-9c12-d1b106aa2861.png)
+![store](https://user-images.githubusercontent.com/105737940/181748278-79c4c921-2b6d-47ed-9826-dc5f6662f065.png)
+![Screenshot from 2022-07-29 06-57-33](https://user-images.githubusercontent.com/105737940/181748287-19d311d7-988e-4eb4-9c35-4acc51cabef7.png)
+![Screenshot from 2022-07-29 06-59-03](https://user-images.githubusercontent.com/105737940/181748296-fc394177-2773-49e9-9f3b-9970ada8fc8c.png)
 
 ### Technologies Used and Dependencies
 
